@@ -1,5 +1,7 @@
 X-AVR
 =====
+### NOTE:
+Use this in the case of setting up this development environment on a new computer.
 
 **X-AVR** is an XCode template for generating `AVR C` projects.
 
@@ -13,34 +15,24 @@ For example, activating pin 13 on an arduino looks like this:
 DDRB |= _BV(PB5)
 PORTB |= _BV(PB5)
 ```
+# Prequisites
 
-and not:
+Using `homebrew` run the following commands:
 
-```C
-pinMode(13, OUTPUT)
-digitalWrite(13, HIGH)
 ```
-
-# Motivation
-
-There are literally dozens of articles and blog posts showing a very basic setup to use XCode for `AVR` C programming: a C project with an external build system based on a `Makefile`.
-
-The problem is that with such a basic setup you might as well use a simple text editor instead of XCode.
-Indeed, you don't get much besides a rudimentary syntax coloring (no autocomplete for example).
-
-To fix this, the `X-AVR` project template setus up a *fake* build target (called `index`) which uses clang to enable XCode to parse and index your project code.
-`X-AVR` also cnfigures the following variables for your build:
-* `HEADER_SEARCH_PATHS`: So that XCode can index the `avr-libc` headers and include their definitions (port and register names, functions, etc.) in the autocomplete suggestions
-* `GCC_PREPROCESSOR_DEFINITIONS`: The selected MCU macro is set (e.g. `__AVR_ATmega328__`) to get accurate autocomplete over the port and register names. `F_CPU` macro is also set (otherwise the indexing would encouter errors)
-
-Also, `X-AVR`, and unlike many other `Makefile`s and templates, automatically picks up all the `.c` and `.h` files in your project.
+brew install avrdude
+brew tap osx-cross/homebrew-avr
+brew install avr-gcc
+```
 
 # Usage
 
+## Installation
 Clone this repository or download the source zip somewhere in your mac and run `python setup.py` to generate and install the XCode project template.
 
 The previous step need only be run once (or whenever you install a new `avr-gcc` version).
 
+## After Installed
 Once the template is installed, you should see an `xavr` entry in the new project wizard in XCode.
 
 The wizard page lets you select the target MCU, its frequency and the programmer to be used to upload the program.
@@ -57,35 +49,6 @@ The project is created with the following targets:
 
 Also check [Using XCode for AVR C developement](http://jawher.me/2014/03/21/using-xcode-avr-c/) for more detailed instructions and screenshots.
 
-# Prequisites
-
-* `avr-gcc` must be installed and in the `PATH` variable (detectable via a `which avr-gcc`)
-* `avrdude` must be installed and in the `PATH` variable (detectable via a `which avrdude`)
-
-Simply install [AVR Crosspack](http://www.obdev.at/products/crosspack/index.html) to satisfy these prequisites.
-
-Another option is to use `homebrew`:
-
-```
-brew install avrdude
-brew tap larsimmisch/avr
-brew install avr-libc
-```
 
 # Credits
-
-## Icon
-
-The template icon was created using GIMP and includes a [mictochip icon](http://thenounproject.com/term/microchip/31537/) designed by Lutz Schubert from the Noun Project and published under the Creative Commons – Attribution (CC BY 3.0) license.
-
-## Makefile
-
-The template's `Makefile` is based on the one written by Eric B. Weddington, Jörg Wunsch, et al.
-
-## Template
-
-This template was inspired by the [embedXcode](http://embedxcode.weebly.com/) XCode template.
-
-# License
-
-See `LICENSE` for details (hint: it's MIT).
+All credit goes to [jawher/xavr](https://github.com/jawher/xavr), this is just my simplified to follow version.
