@@ -51,4 +51,7 @@ Also check [Using XCode for AVR C developement](http://jawher.me/2014/03/21/usin
 
 
 # Credits
-All credit goes to [jawher/xavr](https://github.com/jawher/xavr), this is just my simplified to follow version.
+All credit goes to [jawher/xavr](https://github.com/jawher/xavr), this is just my simplified version to follow.
+
+## Other Resources
+This [site](https://jawher.me/using-xcode-avr-c/) gives a decent example on how to use the tool once it is installed. It is really old, but mostly still relevant.
